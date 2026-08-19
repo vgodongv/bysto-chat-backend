@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BySTo 테스트</title>
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        input { width: 500px; padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; cursor: pointer; }
+        #result { background: #f5f5f5; padding: 15px; margin-top: 20px; white-space: pre-wrap; }
+    </style>
+</head>
+<body>
+    <h1>🌱 BySTo 테스트</h1>
+    <input type="text" id="question" value="감귤 응애 방제법" placeholder="질문 입력">
+    <button onclick="ask()">질문하기</button>
+    <div id="result">여기에 답변이 표시됩니다</div>
+
+    <script>
+    async function ask() {
+        const question = document.getElementById('question').value;
+        document.getElementById('result').innerText = '로딩 중...';
+        
+        try {
+            const response = await fetch('http://localhost:8888/ask', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({question, phone: '01012345678'})
+            });
+            const data = await response.json();
+            document.getElementById('result').innerText = JSON.stringify(data, null, 2);
+        } catch(e) {
+            document.getElementById('result').innerText = '오류: ' + e.message;
+        }
+    }
+    </script>
+</body>
+</html>
+```
+
+### 3️⃣ 저장
+```
+파일 → 다른 이름으로 저장
+위치: C:\1111\chat\
+파일명: test.html
+파일 형식: 모든 파일 (*.*)
+저장
+```
+
+### 4️⃣ 브라우저에서 열기
+```
+C:\1111\chat\test.html 파일을 더블클릭
+또는 브라우저로 드래그
